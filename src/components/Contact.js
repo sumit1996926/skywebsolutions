@@ -27,7 +27,8 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     try {
-      let response = await fetch("/.netlify/functions/contact", {
+      let response = await fetch("/.netlify/functions/server", {
+        // Correct function name
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -40,12 +41,10 @@ export const Contact = () => {
         setStatus({ success: true, message: "Message sent successfully" });
         setFormDetails(formInitialDetails);
       } else {
-        // Handle non-OK response (e.g., 404 or other errors)
         setStatus({
           success: false,
           message: "Something went wrong, please try again later.",
         });
-        console.error("Non-OK response:", response);
       }
     } catch (error) {
       console.error("An error occurred:", error);

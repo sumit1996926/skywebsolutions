@@ -59,7 +59,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/.netlify/functions/contact", async (req, res) => {
+app.post("/.netlify/functions/server", async (req, res) => {
+  // Correct function endpoint
   const { firstName, lastName, email, phone, message } = req.body;
 
   try {
