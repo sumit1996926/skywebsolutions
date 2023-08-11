@@ -113,7 +113,7 @@ export const Projects = () => {
       <img
         className="background-image-right"
         src={colorSharp2}
-        alt="background-image-right"
+        alt="background-right"
       ></img>
     </section>
   );
