@@ -34,11 +34,11 @@ export const Contact = () => {
         },
         body: JSON.stringify(formDetails),
       });
-      setButtonText("Send");
-      let result = await response.json();
-      setFormDetails(formInitialDetails);
-      if (result.code === 200) {
+
+      if (response.ok) {
+        setButtonText("Send");
         setStatus({ success: true, message: "Message sent successfully" });
+        setFormDetails(formInitialDetails);
       } else {
         setStatus({
           success: false,

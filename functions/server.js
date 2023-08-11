@@ -60,10 +60,10 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/.netlify/functions/contact", async (req, res) => {
-  console.log("Function received request:", req.body);
   const { firstName, lastName, email, phone, message } = req.body;
 
   try {
+    console.log("Sending email...");
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -73,8 +73,8 @@ app.post("/.netlify/functions/contact", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: "skywebsoln@gmail.com",
-      to: "syadav1996926@gmail.com",
+      from: firstName,
+      to: "skywebsoln@gmail.com",
       subject: "Contact Form Submission",
       html: `
         <p>Name: ${firstName} ${lastName}</p>
@@ -84,6 +84,7 @@ app.post("/.netlify/functions/contact", async (req, res) => {
       `,
     });
 
+    console.log("Email sent successfully");
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
