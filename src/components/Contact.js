@@ -27,7 +27,7 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     try {
-      let response = await fetch("/.netlify/functions/contact", {
+      let response = await fetch("/.netlify/functions/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
