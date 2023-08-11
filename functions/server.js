@@ -50,51 +50,43 @@
 //   });
 // });
 const express = require("express");
-const { json } = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 const app = express();
+
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
-const contactEmail = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "skywebsoln@gmail.com",
-    pass: "toztrkmwkfzephoh", // Make sure to add your actual password here
-  },
-});
+app.post("/api/contact", async (req, res) => {
+  const { firstName, lastName, email, phone, message } = req.body;
 
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "skywebsoln@gmail.com",
+        pass: "toztrkmwkfzephoh",
+      },
+    });
+
+    await transporter.sendMail({
+      from: "your-email@gmail.com",
+      to: "destination-email@example.com",
+      subject: "Contact Form Submission",
+      html: `
+        <p>Name: ${firstName} ${lastName}</p>
+        <p>Email: ${email}</p>
+        <p>Phone: ${phone}</p>
+        <p>Message: ${message}</p>
+      `,
+    });
+
+    res.status(200).json({ message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ message: "Error sending email" });
   }
-});
-
-app.post("/contact", (req, res) => {
-  const name = req.body.firstName + req.body.lastName;
-  const email = req.body.email;
-  const message = req.body.message;
-  const phone = req.body.phone;
-  const mail = {
-    from: name,
-    to: "skywebsoln@gmail.com",
-    subject: "Contact Form Submission - Portfolio",
-    html: `<p>Name: ${name}</p>
-           <p>Email: ${email}</p>
-           <p>Phone: ${phone}</p>
-           <p>Message: ${message}</p>`,
-  };
-  contactEmail.sendMail(mail, (error) => {
-    if (error) {
-      res.json(error);
-    } else {
-      res.json({ code: 200, status: "Message Sent" });
-    }
-  });
 });
 
 exports.handler = app;
