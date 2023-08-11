@@ -72,8 +72,8 @@ app.post("/.netlify/functions/contact", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: "your-email@gmail.com",
-      to: "destination-email@example.com",
+      from: "skywebsoln@gmail.com",
+      to: "syadav1996926@gmail.com",
       subject: "Contact Form Submission",
       html: `
         <p>Name: ${firstName} ${lastName}</p>
