@@ -81,7 +81,7 @@ export const Contact = () => {
                   }
                 >
                   <h2>Get In Touch</h2>
-                  <form onSubmit={handleSubmit} data-netlify="true">
+                  <form onSubmit={handleSubmit} netlify>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
                         <input
