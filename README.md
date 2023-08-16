@@ -1,7 +1,7 @@
 
 # SkyWebSolutions.shop - Your Partner in Web Development, SEO, and Marketing
 
-![SkyWebSolutions Logo](https://www.skywebsolutions.shop/assets/images/logo.png)
+![SkyWebSolutions Logo](https://www.skywebsolutions.shop/logo.png)
 
 Welcome to **SkyWebSolutions.shop**! We are your dedicated team of web development, SEO, and marketing experts, committed to helping small businesses succeed in the digital landscape. Our mission is to provide high-quality, tailored solutions that empower local businesses to thrive online.
 
